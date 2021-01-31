@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/products', productRoutes);
 
 app.get('/', (req,res) =>{
-    res.send('Hello Pizza Gang')
+    res.send('Hello Pizza Gang');
 });
 
 const PORT = process.env.PORT || 5000;
