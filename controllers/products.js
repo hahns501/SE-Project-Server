@@ -2,7 +2,7 @@ import ProductMessage from "../models/productMessage.js"
 
 export const getProducts = async (req, res) => {
     try{
-        const productMessages = await ProductMessage.find();
+        const productMessages =  await ProductMessage.find();
 
         res.status(200).json(productMessages);
     } catch (error){
