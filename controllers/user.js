@@ -17,7 +17,6 @@ export const findUser = async (req,res) => {
     console.log("Find a user")
     console.log(user)
 
-
     try{
         const userMessage = await UserMessage.findOne(user);
 

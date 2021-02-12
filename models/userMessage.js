@@ -3,10 +3,15 @@ import mongoose from 'mongoose';
 const userSchema = mongoose.Schema({
     fName: String,
     lName: String,
+    employeeID: String,
     password: String,
     userType: String,
     cashierReport:{
         type: String,
+    },
+    createdOn: {
+        type: Date,
+        default: new Date()
     },
 })
 
