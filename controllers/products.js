@@ -1,4 +1,5 @@
 import ProductMessage from "../models/productMessage.js"
+import mongoose from 'mongoose';
 
 export const getProducts = async (req, res) => {
     try{
@@ -22,4 +23,15 @@ export const createProduct = async (req, res) => {
     } catch(error) {
         res.status(409).json({message: error.message});
     }
+}
+
+export const deleteProduct = async (req,res) => {
+    const {id} = req.params;
+    console.log("Delete Product")
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No product with that id");
+
+    await ProductMessage.findByIdAndRemove(id);
+
+    res.json({ message: 'Product deleted'});
 }
