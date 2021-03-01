@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
     employeeID: String,
     password: String,
     userType: String,
+    manager: Boolean,
     active: {
         type: Boolean,
         default: false,
@@ -20,6 +21,6 @@ const userSchema = mongoose.Schema({
     },
 })
 
-const UserMessage = mongoose.model('UserMessage', userSchema)
+const User = mongoose.model('User', userSchema)
 
-export default UserMessage
+export default User
