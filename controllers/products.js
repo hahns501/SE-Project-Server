@@ -35,3 +35,14 @@ export const deleteProduct = async (req,res) => {
 
     res.json({ message: 'Product deleted'});
 }
+
+export const updateProduct = async (req,res) => {
+    const {id: _id} = req.params;
+    const productBody = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No product with that id');
+
+    const updateUser = await ProductMessage.findByIdAndUpdate(_id, productBody, {new:true});
+
+    res.json(updateUser);
+}

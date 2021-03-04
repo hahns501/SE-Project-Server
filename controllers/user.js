@@ -1,6 +1,7 @@
 import UserMessage from "../models/userMessage.js";
 import ActiveUsers from "../models/activeUsers.js";
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
 export const getUsers = async (req, res) => {
     console.log("Get all users")
@@ -76,6 +77,17 @@ export const loginUser = async (req,res) => {
     }
 }
 
+export const deleteUser = async (req,res) =>{
+    const {id} = req.params;
+    console.log("Delete User");
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No user with that id");
+
+    await UserMessage.findByIdAndDelete(id);
+
+    res.json({ message: 'User deleted'});
+}
+
 export const createUser = async (req, res) => {
     const user = req.body;
     console.log(user)
@@ -121,4 +133,15 @@ export const logoutUser = async (req, res) =>{
     }
 
     res.json({ message: 'User Logged Out'});
+}
+
+export const updateUser = async (req,res) =>{
+    const {id: _id} = req.params;
+    const userBody = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No user with that id');
+
+    const updateUser = await UserMessage.findByIdAndUpdate(_id, userBody, {new:true});
+
+    res.json(updateUser);
 }
