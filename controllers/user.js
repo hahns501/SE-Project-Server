@@ -68,6 +68,7 @@ export const loginUser = async (req,res) => {
                 await activeUser.save();
                 res.status(200).json({result: activeUser, token});
             }catch(error){
+                res.status(200).json({result: activeUser, token});
                 console.log(error.message)
             }
 
