@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema({
     employeeID: String,
     password: String,
     userType: String,
+    manager: Boolean,
     active: {
         type: Boolean,
         default: false,

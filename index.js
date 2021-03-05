@@ -4,9 +4,9 @@ import mongoose from 'mongoose';
 import cors from 'cors'
 import dotenv from 'dotenv';
 
-// import loginRoutes from './routes/login,js';
 import productRoutes from './routes/product.js';
 import userRoutes from './routes/user.js';
+import activeUserRoutes from './routes/activeUser.js';
 
 const app = express();
 
@@ -18,6 +18,7 @@ app.use(cors());
 
 app.use('/products', productRoutes);
 app.use('/users', userRoutes);
+app.use('/activeUsers', activeUserRoutes);
 
 app.get('/', (req,res) =>{
     res.send('Hello Pizza Gang');
